@@ -1,3 +1,29 @@
+INSTALATION
+------------
+### Requirement (download and install)
+GIT - [Download](https://git-scm.com/)
+
+Composer (optional, needed only if you plan to manage project packages) -
+- Windows: [Download](https://getcomposer.org/download/) - download through terminal potentially will reduce headpin problems in the future <br>
+- Mac: Download [using brew](https://formulae.brew.sh/formula/composer), but before need to install [Homebrew](https://brew.sh/) <br>
+
+IDE (for example [PHPStorm](https://www.jetbrains.com/ru-ru/phpstorm/)) - for PhpStorm use your RTU @edu.rtu.lv email to get free license instantly
+
+Local server (for example XAMPP) - if you choose [XAMPP](https://www.apachefriends.org/download.html), use version 7.4.27 (at least for mac)
+
+### Setup
+
+1. In terminal open folder where you want to locate project locally and enter command `git clone https://github.com/Kalituha21/workshop-managment.git` <br>
+How to open folder in terminal:
+   - [Windows](https://www.minitool.com/news/how-to-open-a-file-folder-cmd.html)
+   - [Mac](https://www.macworld.com/article/221277/command-line-navigating-files-folders-mac-terminal.html)
+2. Setup virtual hosts for your project
+   1. Add host address at the end of `/etc/hosts` file. For example `127.0.0.1 workshop-management.test` where **127.0.0.1** is your localhost IP that is used by XAMPP server, and **workshop-management.test** is any domain you want to use to access project page in browser
+   2. Setup virtual hosts in your  local server (instructions for XAMPP - [Windows](https://ultimatefosters.com/hosting/setup-a-virtual-host-in-windows-with-xampp-server/), [Mac](https://silvawebdesigns.com/how-to-configure-virtualhosts-in-xampp-on-a-mac/))
+3. Fully turn on server (all Servers in XAMPP) and access web-page by earlier set-upped domain (`workshop-management.test`)
+
+PROJECT INFO
+------------
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
