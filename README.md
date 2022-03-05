@@ -18,9 +18,9 @@ How to open folder in terminal:
    - [Windows](https://www.minitool.com/news/how-to-open-a-file-folder-cmd.html)
    - [Mac](https://www.macworld.com/article/221277/command-line-navigating-files-folders-mac-terminal.html)
 2. Setup virtual hosts for your project
-   1. Add host address at the end of `/etc/hosts` file. For example `127.0.0.1 workshop-management.test` where **127.0.0.1** is your localhost IP that is used by XAMPP server, and **workshop-management.test** is any domain you want to use to access project page in browser
-   2. Setup virtual hosts in your  local server (instructions for XAMPP - [Windows](https://ultimatefosters.com/hosting/setup-a-virtual-host-in-windows-with-xampp-server/), [Mac](https://silvawebdesigns.com/how-to-configure-virtualhosts-in-xampp-on-a-mac/))
-3. Fully turn on server (all Servers in XAMPP) and access web-page by earlier set-upped domain (`workshop-management.test`)
+   1. Add host address at the end of `/etc/hosts` file. For example `127.0.0.1 workshop-managment.test` where **127.0.0.1** is your localhost IP that is used by XAMPP server, and **workshop-management.test** is any domain you want to use to access project page in browser
+   2. Setup virtual hosts in your local server (instructions for XAMPP - [Windows](https://ultimatefosters.com/hosting/setup-a-virtual-host-in-windows-with-xampp-server/), [Mac](https://silvawebdesigns.com/how-to-configure-virtualhosts-in-xampp-on-a-mac/)). As a root folder of the project for virtual host please use `/web` folder -> `/Users/<system_user>/projects/workshop-managment/web` where **Users/<system_user>/projects** is location of the project 
+3. Fully turn on server (all Servers in XAMPP) and access web-page by earlier set-upped domain (`workshop-managment.test`)
 
 PROJECT INFO
 ------------
