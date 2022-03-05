@@ -72,7 +72,7 @@ CONFIGURATION
 ### Database
 
 1. Create a database for your system (for example by using phpMyAdmin). You can choose any name for your database (in example used `workshop-managment`)
-2. Rename the file `config/db.example.php` to `config/db.php` and set real data, for example (default data-set for XAMPP):
+2. Create a copy of the file `config/db.example.php` and name it `config/db.php`. Set real data in the new file, for example (default data-set for XAMPP):
 
 ```php
 return [
