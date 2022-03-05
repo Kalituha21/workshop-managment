@@ -21,7 +21,7 @@ How to open folder in terminal:
    1. Add host address at the end of `/etc/hosts` file. For example `127.0.0.1 workshop-managment.test` where **127.0.0.1** is your localhost IP that is used by XAMPP server, and **workshop-management.test** is any domain you want to use to access project page in browser
    2. Setup virtual hosts in your local server (instructions for XAMPP - [Windows](https://ultimatefosters.com/hosting/setup-a-virtual-host-in-windows-with-xampp-server/), [Mac](https://silvawebdesigns.com/how-to-configure-virtualhosts-in-xampp-on-a-mac/)). <br>
    As a root folder of the project for virtual host please use `/web` folder -> `/Users/<system_user>/projects/workshop-managment/web` where **Users/<system_user>/projects** is location of the project. <br>
-   3. Edit `httpd-vhosts.conf` from the previous step, add following code lines to project <VirtualHost>: <br>
+   3. (For XAMPP) Edit `httpd-vhosts.conf` from the previous step, add following code lines to project <VirtualHost>: <br>
    ```
     <Directory "<project_directory>/web">
         Options Indexes FollowSymLinks Includes execCGI
