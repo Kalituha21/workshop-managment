@@ -19,8 +19,29 @@ How to open folder in terminal:
    - [Mac](https://www.macworld.com/article/221277/command-line-navigating-files-folders-mac-terminal.html)
 2. Setup virtual hosts for your project
    1. Add host address at the end of `/etc/hosts` file. For example `127.0.0.1 workshop-managment.test` where **127.0.0.1** is your localhost IP that is used by XAMPP server, and **workshop-management.test** is any domain you want to use to access project page in browser
-   2. Setup virtual hosts in your local server (instructions for XAMPP - [Windows](https://ultimatefosters.com/hosting/setup-a-virtual-host-in-windows-with-xampp-server/), [Mac](https://silvawebdesigns.com/how-to-configure-virtualhosts-in-xampp-on-a-mac/)). As a root folder of the project for virtual host please use `/web` folder -> `/Users/<system_user>/projects/workshop-managment/web` where **Users/<system_user>/projects** is location of the project 
-3. Fully turn on server (all Servers in XAMPP) and access web-page by earlier set-upped domain (`workshop-managment.test`)
+   2. Setup virtual hosts in your local server (instructions for XAMPP - [Windows](https://ultimatefosters.com/hosting/setup-a-virtual-host-in-windows-with-xampp-server/), [Mac](https://silvawebdesigns.com/how-to-configure-virtualhosts-in-xampp-on-a-mac/)). <br>
+   As a root folder of the project for virtual host please use `/web` folder -> `/Users/<system_user>/projects/workshop-managment/web` where **Users/<system_user>/projects** is location of the project. <br>
+   3. Edit `httpd-vhosts.conf` from the previous step, add following code lines to project <VirtualHost>: <br>
+   ```
+    <Directory "<project_directory>/web">
+        Options Indexes FollowSymLinks Includes execCGI
+        AllowOverride All
+        Require all granted
+    </Directory>
+   ```
+   Don't forget to change project directory. In the result your project VirtualHost look similar to this:
+   ```
+       <VirtualHost *:80>
+           ServerName workshop-managment.test
+           DocumentRoot "<project_directory>/web"
+           <Directory "<project_directory>/web">
+               Options Indexes FollowSymLinks Includes execCGI
+               AllowOverride All
+               Require all granted
+           </Directory>
+       </VirtualHost>
+   ```
+3. Fully turn on the server (all Servers in XAMPP) and access web-page by earlier set-upped domain (`workshop-managment.test`)
 
 PROJECT INFO
 ------------
@@ -55,7 +76,7 @@ DIRECTORY STRUCTURE
       runtime/            contains files generated during runtime
       tests/              contains various tests for the basic application
       vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
+      views/              contains view files for the Web application - .php/.html template that will be seen in browser
       web/                contains the entry script and Web resources
 
 
@@ -89,6 +110,28 @@ return [
 - Check and edit the other files in the `config/` directory to customize your application as required.
 - Refer to the README in the `tests` directory for information specific to basic application tests.
 
+
+HOW TO
+-------
+### Create new template page
+1. In the folder `/views` create a new sub-folder (or use existing) to add your HTML or PHP file. 
+2. In folder `/controllers` and new file (or use some existing) and add function that would open your template file. <br>
+- To access your template in browser use name of controller and function as URL route to your template in the browser. <br>
+- Controllers should be named in PascalCase and its name should end with word `Controller`
+- Controllers should be named same as sub-folder where located your template file
+- functions should be named in camelCase and start with word `action` (rule about `action` relates only to functions accessed as browser URLs)
+- if function named as `actionIndex` then function name part is not required in URL. <br>
+For example `ExamplesController` -> `actionIndex` can be accessed in browser by using URL `workshop-managment.test/examples/index` or `workshop-managment.test/examples` <br> <br>
+To understand better see example `views/examples/test.php`, `\controllers\ExamplesController`, `\controllers\ExamplesController::actionIndex`.
+
+### Create query
+1. In folder `/queries` add new folder. Give it representative name of your planned query
+2. In your new folder create two files `execute.sql` and `revert.sql`. 
+    - File `execute.sql` is place where you should write your query. 
+    - File `revert.sql` is place where you should write a query that would revert changes made by your main query. (!!! Required !!!)
+3. Add the name of your new folder to the end of query list. This constant: `\models\QueryHistory::QUERY_NAMES`
+4. You can now execute your query on page `workshop-managment.test/query`
+- See example: `queries/create_test_table`
 
 TESTING
 -------
