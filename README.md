@@ -71,14 +71,15 @@ CONFIGURATION
 
 ### Database
 
-Edit the file `config/db.php` with real data, for example:
+1. Create a database for your system (for example by using phpMyAdmin). You can choose any name for your database (in example used `workshop-managment`)
+2. Rename the file `config/db.example.php` to `config/db.php` and set real data, for example (default data-set for XAMPP):
 
 ```php
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
+    'dsn' => 'mysql:host=localhost;dbname=workshop-managment',
     'username' => 'root',
-    'password' => '1234',
+    'password' => '',
     'charset' => 'utf8',
 ];
 ```
