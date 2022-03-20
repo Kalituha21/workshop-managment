@@ -133,6 +133,14 @@ To understand better see example `views/examples/test.php`, `\controllers\Exampl
 4. You can now execute your query on page `workshop-managment.test/query`
 - See example: `queries/create_test_table`
 
+### Add image in HTML file
+1. Save image in `web/images` folder
+2. Add image tag with src which is php `img()` function, where an input parameter is image's name.
+   - Example: 
+   ```html
+   <img src="<?= img('message.png'); ?>
+   ```
+
 TESTING
 -------
 
