@@ -38,7 +38,7 @@ $insructors = [
     <?php foreach($insructors as $key=>$value) : ?>
         <div class="row bg-light text-dark">
             <div class="col-1 border border-dark">
-                <?=$key; ?>
+                <?=++$key; ?>
             </div>
             <div class="col border border-dark">
                 <button type="button" class="btn btn-light"><img src="<?= img('message.png'); ?>" alt="Message" height="20" width="20"></button>
