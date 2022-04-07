@@ -19,4 +19,10 @@ class ExamplesController extends Controller
             'admin_list'
         );
     }
+    public function actionStudent()
+    {
+        return $this->render(
+            'student_list'
+        );
+    }
 }
