@@ -7,6 +7,10 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron text-center bg-transparent">
+
+        <a href="../../web/admin_profile_tab.html">ADMIN PROFILE TAB</a><br>
+        <a href="../../web/student_profile_tab.html">STUDENT PROFILE TAB</a><br>
+        <a href="../../web/student_portal.html">STUDENT PORTAL</a><br>
         <h1 class="display-4">Congratulations!</h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
