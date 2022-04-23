@@ -16,6 +16,8 @@ class QueryHistory extends ActiveRecord
     public const QUERY_NAMES = [
         'create_query_history_table',
         'create_test_table',
+        'create_system_users_table',
+        'insert_admin_user',
 
         // TODO: add here name new query folder
     ];
