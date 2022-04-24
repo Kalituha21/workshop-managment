@@ -10,7 +10,6 @@ use yii\web\Response;
 
 class AdminController extends Controller
 {
-
     public function actionInstructors()
     {
         $instructorsData = [];

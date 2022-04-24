@@ -9,10 +9,6 @@ use yii\helpers\Html;
  */
 ?>
 
-<!--<div class="modal-header">-->
-<!--    <h4 class="modal-title">Add Instructor</h4>-->
-<!--    <button type="button" class="close" data-dismiss="modal">&times;</button>-->
-<!--</div>-->
 <?php
 $form = ActiveForm::begin(
     ['id' => 'instructor-form', 'enableAjaxValidation' => true]
