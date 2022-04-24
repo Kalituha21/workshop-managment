@@ -13,12 +13,6 @@ class ExamplesController extends Controller
             ['text' => 'Hello World!']
         );
     }
-    public function actionAdmin()
-    {
-        return $this->render(
-            'admin_list'
-        );
-    }
     public function actionStudent()
     {
         return $this->render(

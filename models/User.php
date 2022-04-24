@@ -15,6 +15,8 @@ use yii\web\IdentityInterface;
  * @property string password_hash
  * @property string password_reset_token
  * @property string|null email
+ * @property string name
+ * @property string surname
  * @property int status
  * @property int role
  * @property int|null password_updated_at
@@ -34,14 +36,20 @@ class User extends ActiveRecord implements IdentityInterface
     ];
 
     public const ROLE_ADMIN = 0;
-    public const ROLE_LECTURE = 1;
+    public const ROLE_INSTRUCTOR = 1;
     public const ROLE_STUDENT = 2;
 
     public const ROLES_ALLOWED = [
         self::ROLE_ADMIN,
-        self::ROLE_LECTURE,
+        self::ROLE_INSTRUCTOR,
         self::ROLE_STUDENT,
     ];
+
+    /**
+     * Property not written in DB
+     * @var string temporary password storage for new user before data saving in DB
+     */
+    public string $password = '';
 
     public static function tableName()
     {
@@ -58,7 +66,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            [['username', 'password', 'name', 'surname'], 'required'],
             ['username', 'unique'],
+            ['email', 'email'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => self::STATUSES_ALLOWED],
             ['role', 'in', 'range' => self::ROLES_ALLOWED],

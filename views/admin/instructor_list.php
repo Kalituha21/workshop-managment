@@ -1,18 +1,36 @@
 <?php
 /**
- * @var array $insructors
+ * @var array $instructors
  */
 
-$insructors = [
-        ['surname' => 'Giacomo', 'name' => 'Guilizzoni', 'email' => 'guilizzoni@gmail.com'],
-        ['surname' => 'Marco', 'name' => 'Polli', 'email' => 'polli@gmail.com'],
-        ['surname' => 'Mia', 'name' => 'Farfalle', 'email' => 'farfalle@gmail.com'],
-        ['surname' => 'Roberto', 'name' => 'Squallo', 'email' => 'squallo@gmail.com'],
-];
+use yii\bootstrap4\Modal;
+
+$js = <<< JS
+$('#js--modal-instructor').click(function(){
+    $('#modal-instructor').modal('show')
+        .find('#modal-content')
+        .load($(this).attr('value'));
+})
+JS;
+
+$this->registerJs($js);
 ?>
 
-<button type="button" class="btn btn-light">
-    <img src="<?= img('add_admin.png'); ?>" alt="Add Admin" height="70" width="70">
+<?php
+Modal::begin([
+    'id'=>'modal-instructor',
+    'size'=>'modal-lg',
+    'title' => 'Add Instructor',
+]);
+
+echo "<div id='modal-content'></div>";
+
+Modal::end();
+
+?>
+
+<button id="js--modal-instructor" type="button" class="btn btn-light quick-add-contact" value="/admin/add-instructor">
+    <img src="<?= img('add_admin.png'); ?>" alt="Add Instructor" height="70" width="70">
     Add Instructor
 </button>
 
@@ -35,7 +53,7 @@ $insructors = [
         </div>
     </div>
 
-    <?php foreach($insructors as $key=>$value) : ?>
+    <?php foreach($instructors as $key=>$value) : ?>
         <div class="row bg-light text-dark">
             <div class="col-1 border border-dark">
                 <?=++$key; ?>
