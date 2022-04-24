@@ -1,0 +1,2 @@
+ALTER TABLE query_history
+MODIFY COLUMN `name` VARCHAR(60);
