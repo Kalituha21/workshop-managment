@@ -32,9 +32,21 @@ class ExamplesController extends Controller
         );
     }
         public function actionSinfo()
+        {
+            return $this->render(
+                'students_info'
+            );
+        }
+        public function actionUpdate()
+        {
+            return $this->render(
+                'update'
+            );
+        }
+        public function actionDelete()
     {
         return $this->render(
-            'students_info'
+            'delete'
         );
     }
 }

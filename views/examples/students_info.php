@@ -1,98 +1,90 @@
-<?php
-/**
- * @var array $insructors
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row text-white">
 
-$insructors = [
-    ['surname' => 'Giacomo', 'name' => 'Guilizzoni', 'student' => '21GD01', 'email' => 'peldi@inbox.lv', 'first' => 'A Collaborative Code Review Pl...', 'second' => 'A comparative study of hybrid...'],
-    ['surname' => 'Marco', 'name' => 'Botton', 'student' => '22GD02', 'email' => 'peldi@gmail.com', 'first' => '', 'second' => ''],
-    ['surname' => 'Mariah', 'name' => 'Maclachlan', 'student' => '22GD03', 'email' => 'oreon@mail.com', 'first' => 'A comparison of scrum and Knab...', 'second' => ''],
-    ['surname' => 'Liberty', 'name' => 'Valerie', 'student' => '23GD04', 'email' => 'itcode@hotmail.com', 'first' => 'A comparative Study of UML To...', 'second' => 'A Comparison of Metrics for...'],
-    ['surname' => '', 'name' => '', 'student' => '', 'email' => '', 'first' => '', 'second' => ''],
-    ['surname' => '', 'name' => '', 'student' => '', 'email' => '', 'first' => '', 'second' => ''],
+                <?php
+                // Include config file
+                require_once "db.php";
 
-];
-?>
-<button type="button" class="btn btn-light">
-    <img src="<?= img('import.png'); ?>" alt="Import" height="70" width="70">
-    Import students
-</button>
-<button type="button" class="btn btn-light">
-    <img src="<?= img('add_admin.png'); ?>" alt="Add Admin" height="70" width="70">
-    Add Students
-</button>
-<button type="button" class="btn btn-light">
-    <img src="<?= img('trash.png'); ?>" alt="Trash" height="70" width="70">
-    Clear list of the papers
-</button>
-<button type="button" class="btn btn-light">
-    <img src="<?= img('export.png'); ?>" alt="Export" height="70" width="70">
-    Export students
-</button>
+                // Attempt select query execution
+                $sql = "SELECT * FROM studenti";
+                if($result = mysqli_query($link, $sql)){
+                    if(mysqli_num_rows($result) > 0){
+                        echo '<table class="table table-bordered table-striped">';
+                        echo "<thead>";
+                        echo "<tr>";
+                        echo "<th>id</th>";
+                        echo "<th>Edit</th>";
+                        echo "<th>Surname <a class='show'><span class='fa fa-eye'></span><a class='hide'><span class='fa fa-eye'></span> </th>";
+                        echo "<th>Name <a class='show'><span class='fa fa-eye'></span><a class='hide'><span class='fa fa-eye'></span> </th>";
+                        echo "<th>Student <a class='show'><span class='fa fa-eye'></span><a class='hide'><span class='fa fa-eye'></span> </th>";
+                        echo "<th>Email <a class='show'><span class='fa fa-eye'></span><a class='hide'><span class='fa fa-eye'></span> </th>";
+                        echo "<th>Paper #1</th>";
+                        echo "<th>Paper #2</th>";
+                        echo "</tr>";
+                        echo "</thead>";
+                        echo "<tbody>";
+                        while($row = mysqli_fetch_array($result)){
+                            echo "<tr>";
+                            echo "<td>" . $row['id'] . "</td>";
+                            echo "<td>";
+                            echo '<a href="update.php?id='.$row['id'].'" <span class="edit"><i class="fas fa-pen fa-xs">====</span></i></a>';
+                            echo '<a href=/"delete.php?id='. $row['id'] .'" title="Delete Record"  data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                            echo "</td>";
+                            echo "<td>" . $row['Surname'] . "</td>";
+                            echo "<td>" . $row['Name'] . "</td>";
+                            echo "<td>" . $row['Student'] . "</td>";
+                            echo "<td>" . $row['Email'] . "</td>";
+                            echo "<td>" . $row['Paper1'] . "</td>";
+                            echo "<td>" . $row['Paper2'] . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</tbody>";
+                        echo "</table>";
+                        // Free result set
+                        mysqli_free_result($result);
+                    } else{
+                        echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                    }
+                } else{
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
 
-<div>
-<input placeholder="Information for students" id="first_name" type="text" class="validate">
-<button type="button" class="btn btn-light"><img src="<?= img('check.png'); ?>" alt="Check" height="20" width="20"></button>
-<button type="button" class="btn btn-light"><img src="<?= img('cross.png'); ?>" alt="Cross" height="20" width="20"></button>
-</div>
-
-<div class="container mt-3">
-    <div class="row bg-secondary text-white">
-        <div class="col-1 border border-dark">
-            Nr
-        </div>
-        <div class="col border border-dark">
-            Edit
-        </div>
-        <div class="col border border-dark">
-            Surname
-        </div>
-        <div class="col border border-dark">
-            Name
-        </div>
-        <div class="col border border-dark">
-            Student
-        </div>
-        <div class="col border border-dark">
-            Email
-        </div>
-        <div class="col border border-dark">
-            Paper #1
-        </div>
-        <div class="col border border-dark">
-            Paper #2
+                // Close connection
+                mysqli_close($link);
+                ?>
         </div>
     </div>
-
-    <?php foreach($insructors as $key=>$value) : ?>
-        <div class="row bg-light text-dark">
-            <div class="col-1 border border-dark">
-                <?=++$key; ?>
-            </div>
-            <div class="col border border-dark">
-                <button type="button" class="btn btn-light"><img src="<?= img('message.png'); ?>" alt="Message" height="20" width="20"></button>
-                <button type="button" class="btn btn-light"><img src="<?= img('pencil.png'); ?>" alt="Pencil" height="20" width="20"></button>
-                <button type="button" class="btn btn-light"><img src="<?= img('cross.png'); ?>" alt="Cross" height="20" width="20"></button>
-                <button type="button" class="btn btn-light"><img src="<?= img('plane.png'); ?>" alt="Plane" height="20" width="20"></button>
-            </div>
-            <div class="col border border-dark">
-                <?=$value['surname']; ?>
-            </div>
-            <div class="col border border-dark">
-                <?=$value['name']; ?>
-            </div>
-            <div class="col border border-dark">
-                <?=$value['student']; ?>
-            </div>
-            <div class="col border border-dark">
-                <?=$value['email']; ?>
-            </div>
-            <div class="col border border-dark">
-                <?=$value['first']; ?>
-            </div>
-            <div class="col border border-dark">
-                <?=$value['second']; ?>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
+    <script>
+        $(document).ready(function(){
+            $('.show').hide();
+            $('.hide').on('click',function(){
+                $('tr').find('td:eq('+$(this).closest('th').index()+')').css('visibility','hidden');
+                $(this).closest('th').find('.show').show();
+                $(this).hide();
+            });
+            $('.show').on('click',function(){
+                $('tr').find('td:eq('+$(this).closest('th').index()+')').css('visibility','visible');
+                $(this).closest('th').find('.hide').show();
+                $(this).hide();
+            });
+        });
+    </script>
+</body>
+</html>
