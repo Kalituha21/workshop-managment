@@ -5,7 +5,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     require_once "db_upd_del.php";
 
     // Prepare a delete statement
-    $sql = "DELETE FROM studenti WHERE id = ?";
+    $sql = "DELETE FROM papiri WHERE id = ?";
 
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
@@ -17,7 +17,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             // Records deleted successfully. Redirect to landing page
-            header("location: students_info.php");
+            header("location: papers_info.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";
@@ -57,7 +57,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <p>Are you sure you want to delete this employee record?</p>
                         <p>
                             <input type="submit" value="Yes" class="btn btn-danger">
-                            <a href="students_info.php" class="btn btn-secondary">No</a>
+                            <a href="papers_info.php" class="btn btn-secondary">No</a>
                         </p>
                     </div>
                 </form>

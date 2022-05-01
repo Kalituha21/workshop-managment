@@ -3,7 +3,7 @@
 require_once "db_upd_del.php";
 
 // Define variables and initialize with empty values
-$Surname = $Name = $Student = $Email = $Paper1 = $Paper2 = "";
+$Title = $Surname = $Name = "";
 
 // Processing form data when form is submitted
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -11,47 +11,39 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     $id = $_POST["id"];
 
     // Validate name
+    $input_Title = trim($_POST["Title"]);
+    $Title = $input_Title;
     $input_Surname = trim($_POST["Surname"]);
     $Surname = $input_Surname;
     $input_Name = trim($_POST["Name"]);
     $Name = $input_Name;
-    $input_Student = trim($_POST["Student"]);
-    $Student = $input_Student;
-    $input_Email = trim($_POST["Email"]);
-    $Email = $input_Email;
-    $input_Paper1 = trim($_POST["Paper1"]);
-    $Paper1 = $input_Paper1;
-    $input_Paper2 = trim($_POST["Paper2"]);
-    $Paper2 = $input_Paper2;
 
-        // Prepare an update statement
-        $sql = "UPDATE studenti SET Surname=?, Name=?, Student=?, Email=?, Paper1=?, Paper2=? WHERE id=?";
 
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssssi", $param_Surname,$param_Name, $param_Student, $param_Email, $param_Paper1, $param_Paper2, $param_id);
+    // Prepare an update statement
+    $sql = "UPDATE papiri SET Title=?, Surname=?, Name=? WHERE id=?";
 
-            // Set parameters
-            $param_Surname = $Surname;
-            $param_Name = $Name;
-            $param_Student = $Student;
-            $param_Email = $Email;
-            $param_Paper1 = $Paper1;
-            $param_Paper2 = $Paper2;
-            $param_id = $id;
+    if($stmt = mysqli_prepare($link, $sql)){
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "sssi", $param_Title,$param_Surname, $param_Name, $param_id);
 
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Records updated successfully. Redirect to landing page
-                header("location: students_info.php");
-                exit();
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+        // Set parameters
+        $param_Title = $Title;
+        $param_Surname = $Surname;
+        $param_Name = $Name;
+        $param_id = $id;
+
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt)){
+            // Records updated successfully. Redirect to landing page
+            header("location: papers_info.php");
+            exit();
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
         }
+    }
 
-        // Close statement
-        mysqli_stmt_close($stmt);
+    // Close statement
+    mysqli_stmt_close($stmt);
 
 
     // Close connection
@@ -63,7 +55,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $id =  trim($_GET["id"]);
 
         // Prepare a select statement
-        $sql = "SELECT * FROM studenti WHERE id = ?";
+        $sql = "SELECT * FROM papiri WHERE id = ?";
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -81,12 +73,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
                     // Retrieve individual field value
+                    $Title = $row["Title"];
                     $Surname = $row["Surname"];
-            $Name = $row["Name"];
-            $Student = $row["Student"];
-            $Email = $row["Email"];
-            $Paper1 = $row["Paper1"];
-            $Paper2 = $row["Paper2"];
+                    $Name = $row["Name"];
 
                 }
 
@@ -126,6 +115,10 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                 <p>Please edit the input values and submit to update the employee record.</p>
                 <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                     <div class="form-group">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="Title" value="<?php echo $Title; ?>">
+                        </div>
                         <label>Surname</label>
                         <input type="text" name="Surname" value="<?php echo $Surname; ?>">
                     </div>
@@ -133,25 +126,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                         <label>Name</label>
                         <input type="text" name="Name" value="<?php echo $Name; ?>">
                     </div>
-                    <div class="form-group">
-                        <label>Student</label>
-                        <input type="text" name="Student" value="<?php echo $Student; ?>">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" name="Email" value="<?php echo $Email; ?>">
-                    </div>
-                    <div class="form-group">
-                        <label>Paper1</label>
-                        <input type="text" name="Paper1" value="<?php echo $Paper1; ?>">
-                    </div>
-                    <div class="form-group">
-                        <label>Paper2</label>
-                        <input type="text" name="Paper2"  value="<?php echo $Paper2; ?>">
-                    </div>
                     <input type="hidden" name="id" value="<?php echo $id; ?>"/>
                     <input type="submit" class="btn btn-primary" value="Submit">
-                    <a href="students_info.php" class="btn btn-secondary ml-2">Cancel</a>
+                    <a href="papers_info.php" class="btn btn-secondary ml-2">Cancel</a>
                 </form>
             </div>
         </div>

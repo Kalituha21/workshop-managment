@@ -40,7 +40,7 @@ class ExamplesController extends Controller
         public function actionUpdate()
         {
             return $this->render(
-                'update'
+                'update.php?id='. $row['id'] .''
             );
         }
         public function actionDelete()

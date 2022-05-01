@@ -55,6 +55,8 @@ AppAsset::register($this);
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Queries', 'url' => ['/query/index']],
             ['label' => 'Student', 'url' => ['/examples/student']],
+            ['label' => 'Papers', 'url' => ['/examples/papers']],
+            ['label' => 'Studentu_Info', 'url' => ['/examples/sinfo']],
         ],
     ]);
     NavBar::end();

@@ -20,7 +20,7 @@
 
                 <?php
                 // Include config file
-                require_once "db.php";
+                require_once "db_upd_del.php";
 
                 // Attempt select query execution
                 $sql = "SELECT * FROM studenti";
@@ -44,8 +44,9 @@
                             echo "<tr>";
                             echo "<td>" . $row['id'] . "</td>";
                             echo "<td>";
-                            echo '<a href="update.php?id='.$row['id'].'" <span class="edit"><i class="fas fa-pen fa-xs">====</span></i></a>';
-                            echo '<a href=/"delete.php?id='. $row['id'] .'" title="Delete Record"  data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                            //echo '<form method="POST" action="update.php" id="sample_form">';
+                            echo '<a href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                            echo '<a href="delete.php?id='. $row['id'] .'" title="Delete Record"  data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                             echo "</td>";
                             echo "<td>" . $row['Surname'] . "</td>";
                             echo "<td>" . $row['Name'] . "</td>";
