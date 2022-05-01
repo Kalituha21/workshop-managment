@@ -54,6 +54,7 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Queries', 'url' => ['/query/index']],
+            ['label' => 'Instructors', 'url' => ['/admin/instructors']],
             ['label' => 'Student', 'url' => ['/examples/student']],
             ['label' => 'Papers', 'url' => ['/examples/papers']],
             ['label' => 'Studentu_Info', 'url' => ['/examples/sinfo']],
