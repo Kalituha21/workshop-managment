@@ -19,4 +19,28 @@ class ExamplesController extends Controller
             'student_list'
         );
     }
+    public function actionPapers()
+    {
+        return $this->render(
+            'papers_info'
+        );
+    }
+        public function actionSinfo()
+        {
+            return $this->render(
+                'students_info'
+            );
+        }
+        public function actionUpdate()
+        {
+            return $this->render(
+                'update'
+            );
+        }
+        public function actionDelete()
+    {
+        return $this->render(
+            'delete'
+        );
+    }
 }
