@@ -2,10 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\SystemMeta;
 use app\models\User;
 use Yii;
+use yii\bootstrap4\ActiveForm;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\Response;
 
 class ExamplesController extends Controller
 {
@@ -67,6 +70,25 @@ class ExamplesController extends Controller
     {
         return $this->render(
             'delete'
+        );
+    }
+
+    public function actionAddNumberOfPaper()
+    {
+        $papersLimit = SystemMeta::getMeta(SystemMeta::KEY_PAPERS_LIMIT, 1);
+
+        if ($papersLimit->load(Yii::$app->request->post())) {
+            if ($papersLimit->save()) {
+                return $this->redirect('/examples/student');
+            }
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($papersLimit);
+        }
+
+        return $this->renderAjax(
+            'modal_number',
+            ['model' => $papersLimit]
         );
     }
 }

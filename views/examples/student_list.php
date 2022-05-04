@@ -3,6 +3,17 @@
  * @var array $papers
  */
 
+use yii\bootstrap4\Modal;
+
+$js = <<< JS
+$('#js--modal-number').click(function(){
+    $('#modal-number').modal('show')
+        .find('#modal-number-content')
+        .load($(this).attr('value'));
+})
+JS;
+$this->registerJs($js);
+
 $papers = [
         ['title' => 'A Collaborative Code Review Platform for GitHub'],
         ['title' => 'A comparative study of hybrid models of selective classification and dynamic selection of analogies for...'],
@@ -16,6 +27,23 @@ $papers = [
         ['title' => 'A Framework to Formally Verify Conformance of a Software Process to a Software Method'],
 ];
 ?>
+
+<?php
+Modal::begin([
+    'id'=>'modal-number',
+    'size'=>'modal-lg',
+    'title' => 'Number of paper',
+]);
+
+echo "<div id='modal-number-content'></div>";
+
+Modal::end();
+?>
+
+<button id="js--modal-number" type="button" class="btn btn-light quick-add-contact" value="/examples/add-number-of-paper">
+    <img src="<?= img('list.png'); ?>" alt="Number of paper" height="70" width="70">
+    Number of paper
+</button>
 
 
 <div class="container mt-3">
