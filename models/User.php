@@ -45,6 +45,8 @@ class User extends ActiveRecord implements IdentityInterface
         self::ROLE_STUDENT,
     ];
 
+    public const SCENARIO_REGISTER = 'register';
+
     /**
      * Property not written in DB
      * @var string temporary password storage for new user before data saving in DB
@@ -66,7 +68,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password', 'name', 'surname'], 'required'],
+            [['username', 'name', 'surname'], 'required'],
+            [['password'], 'required', 'on' => self::SCENARIO_REGISTER],
             ['username', 'unique'],
             ['email', 'email'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],

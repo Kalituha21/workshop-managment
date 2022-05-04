@@ -7,10 +7,15 @@ use yii\bootstrap4\Modal;
 
 $js = <<< JS
 $('#js--modal-instructor').click(function(){
-    $('#modal-instructor').modal('show')
-        .find('#modal-content')
+    $('#modal-add-instructor').modal('show')
+        .find('#modal-add-content')
         .load($(this).attr('value'));
-})
+});
+$('#js--modal-edit-instructor').click(function(){
+    $('#modal-edit-instructor').modal('show')
+        .find('#modal-edit-content')
+        .load($(this).attr('value'));
+});
 JS;
 
 $this->registerJs($js);
@@ -18,12 +23,22 @@ $this->registerJs($js);
 
 <?php
 Modal::begin([
-    'id'=>'modal-instructor',
+    'id'=>'modal-add-instructor',
     'size'=>'modal-lg',
     'title' => 'Add Instructor',
 ]);
 
-echo "<div id='modal-content'></div>";
+echo "<div id='modal-add-content'></div>";
+
+Modal::end();
+
+Modal::begin([
+    'id'=>'modal-edit-instructor',
+    'size'=>'modal-lg',
+    'title' => 'Edit Instructor',
+]);
+
+echo "<div id='modal-edit-content'></div>";
 
 Modal::end();
 
@@ -33,6 +48,7 @@ Modal::end();
     <img src="<?= img('add_admin.png'); ?>" alt="Add Instructor" height="70" width="70">
     Add Instructor
 </button>
+
 
 <div class="container mt-3">
     <div class="row bg-secondary text-white">
@@ -59,9 +75,9 @@ Modal::end();
                 <?=++$key; ?>
             </div>
             <div class="col border border-dark">
-                <button type="button" class="btn btn-light"><img src="<?= img('message.png'); ?>" alt="Message" height="20" width="20"></button>
-                <button type="button" class="btn btn-light"><img src="<?= img('pencil.png'); ?>" alt="Pencil" height="20" width="20"></button>
-                <button type="button" class="btn btn-light"><img src="<?= img('cross.png'); ?>" alt="Cross" height="20" width="20"></button>
+                <button type="button"  class="btn btn-light"><img src="<?= img('message.png'); ?>" alt="Message" height="20" width="20"></button>
+                <button id="js--modal-edit-instructor" type="button" class="btn btn-light"  value="/admin/edit-instructor?id=<?= $value['id']; ?>"><img src="<?= img('pencil.png'); ?>" alt="Pencil" height="20" width="20"></button>
+                <a href="/admin/delete-instructor?id=<?= $value['id']; ?>" class="btn btn-light"><img src="<?= img('cross.png'); ?>" alt="Cross" height="20" width="20"></a>
                 <button type="button" class="btn btn-light"><img src="<?= img('plane.png'); ?>" alt="Plane" height="20" width="20"></button>
             </div>
             <div class="col border border-dark">

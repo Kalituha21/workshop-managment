@@ -40,6 +40,7 @@ class AdminController extends Controller
         $instructors = User::findAll(['role' => User::ROLE_INSTRUCTOR]);
         foreach ($instructors as $instructor) {
             $instructorsData[] = [
+                'id' => $instructor->id,
                 'surname' => $instructor->surname,
                 'name' => $instructor->name,
                 'email' => $instructor->email,
@@ -55,13 +56,13 @@ class AdminController extends Controller
     public function actionAddInstructor()
     {
         $newUser = new User();
+        $newUser->setScenario(User::SCENARIO_REGISTER);
 
         if ($newUser->load(Yii::$app->request->post())) {
             $newUser->role = User::ROLE_INSTRUCTOR;
 
             if (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = Response::FORMAT_JSON;
-
                 return ActiveForm::validate($newUser);
             }
 
@@ -72,11 +73,47 @@ class AdminController extends Controller
             if ($newUser->save()) {
                 return $this->redirect('/admin/instructors');
             }
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($newUser);
         }
 
         return $this->renderAjax(
             'modal_add_instructor',
             ['model' => $newUser]
+        );
+    }
+
+    public function actionDeleteInstructor()
+    {
+        $instructorId = Yii::$app->request->get('id');
+        $instructor = User::deleteAll(['id' => $instructorId]);
+
+        return $this->actionInstructors();
+    }
+
+    public function actionEditInstructor()
+    {
+        $instructorId = Yii::$app->request->get('id');
+        $instructor = User::findOne(['id' => $instructorId]);
+
+        if ($instructor->load(Yii::$app->request->post())) {
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($instructor);
+            }
+
+            if ($instructor->save()) {
+                return $this->redirect('/admin/instructors');
+            }
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($instructor);
+        }
+
+        return $this->renderAjax(
+            'modal_edit_instructor',
+            ['model' => $instructor]
         );
     }
 }
