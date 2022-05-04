@@ -5,11 +5,35 @@ namespace app\controllers;
 use app\models\User;
 use Yii;
 use yii\bootstrap4\ActiveForm;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 
 class AdminController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['instructors', 'add-instructor'],
+                'rules' => [
+                    [
+                        'actions' => ['instructors', 'add-instructor'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function () {
+                            return in_array(
+                                Yii::$app->user->identity->role,
+                                [User::ROLE_ADMIN]
+                            );
+                        },
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionInstructors()
     {
         $instructorsData = [];
