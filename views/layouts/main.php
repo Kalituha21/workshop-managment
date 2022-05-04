@@ -121,12 +121,7 @@ foreach ($menuBarItems as $item) {
                 . '</li>'
             ),
 
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Queries', 'url' => ['/query/index']],
-            ['label' => 'Instructors', 'url' => ['/admin/instructors']],
-            ['label' => 'Student', 'url' => ['/examples/student']],
+            ...$items,
         ],
     ]);
     NavBar::end();
