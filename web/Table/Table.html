@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title>Static Template</title>
+  </head>
+  
+  <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Papers')">Papers</button>
+  <button class="tablinks" onclick="openCity(event, 'Students')">Students</button>
+  <button class="tablinks" onclick="openCity(event, 'Profile')">Profile</button>
+  
+</div>
+<div id="Papers" class="tabcontent">
+  <table class="t">
+  <thead>
+    <td>
+<button class="btn"><i class="fa fa-download"></i> Import all the papers</button>
+</td>
+<td>
+<button class='add'>+ Add pape</Button>
+</td>
+<td>
+<button class='del' class="btn btn-default btn-sm">
+<span class="glyphicon glyphicon-trash"></span> Clear list of the papers
+</button>
+</td>
+</thead>
+</table>
+
+<table border class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nr</th>
+      <th scope="col">Edits</th>
+      <th scope="col">Title of the papers</th>
+      <th scope="col">Selected by (Surname)<button class="btn Hide btn-link"/><button class="btn Devide btn-link"/></th>
+      <th scope="col">Selected by (name)<button class="btn Hide btn-link"/><button class="btn Devide btn-link"/></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> 
+      <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A Collaborative Code Review Platform for GitHub</td>
+      <td>Guilizzoni</td>
+      <td>Giacomo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>
+       <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A comopative study of hybrid models of selective</td>
+      <td>Botton</td>
+      <td>Marco</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>
+       <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A comparative Study of UML Tools</td>
+      <td>Maclachlan</td>
+      <td>Mariah</td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>
+       <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A comparison of Metrics for UML Class Diagrams</td>
+      <td>Valerie</td>
+      <td>Liberty</td>
+    </tr>
+    <tr>
+      <th scope="row">5</th>
+      <td>
+       <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A comparasion of scrum and Kanban for identifying</td>
+      <td>Pure</td>
+      <td>Valery</td>
+    </tr>
+    <tr>
+      <th scope="row">6</th>
+      <td>
+       <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A Comparasion of.Security Assurance Support of Agile</td>
+      <td>Bortelo</td>
+      <td>Alex</td>
+    </tr>
+    <tr>
+      <th scope="row">7</th>
+      <td>
+       <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A comprehensive study on state of Scrum development</td>
+      <td>Murza</td>
+      <td>Aleksander</td>
+    </tr>
+    <tr>
+      <th scope="row">8</th>
+      <td>
+      <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A Conceotual Data Model and its Autimatic Implem...</td>
+      <td>Komisar</td>
+      <td>Aleksey</td>
+    </tr>
+    <tr>
+      <th scope="row">9</th>
+      <td>
+      <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A framework to apply ISO-IEC29110 on SCRUM</td>
+      <td>Pezolly</td>
+      <td>Enrico</td>
+    </tr>
+    <tr>
+      <th scope="row">10</th>
+      <td>
+       <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+      </td>
+      <td>A Framework of Formally Verify Conformance of a ...</td>
+      <td>Davinchy</td>
+      <td>Leonardo</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div id="Students" class="tabcontent">
+  <table class="t">
+  <thead>
+    <td>
+<button class="btn"><i class="fa fa-download"></i> Import students</button>
+</td>
+<td>
+<button class='add'>+ Add student</Button>
+</td>
+<td>
+<button class='del' class="btn btn-default btn-sm">
+<span class="glyphicon glyphicon-trash"></span> Clear list of students
+</button>
+</td>
+<td>
+<button class="imp"><i class="fa fa-download"></i> Export students</button>
+</td>
+<td>
+</thead>
+</table>
+
+<table>
+<input placeholder="Information for students" id="first_name" type="text" class="validate">
+<button class="btn check btn-link"/>
+<button class="btn cancel btn-link"/>
+</table>
+
+<table border class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nr</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Surname<button class="btn Hide btn-link"/><button class="btn Devide btn-link"/></th>
+      <th scope="col">Name<button class="btn Hide btn-link"/><button class="btn Devide btn-link"/></th>
+      <th scope="col">Student ID<button class="btn Hide btn-link"/><button class="btn Devide btn-link"/></th>
+      <th scope="col">Email<button class="btn Hide btn-link"/><button class="btn Devide btn-link"/></th>
+      <th scope="col">Paper #1</th>
+      <th scope="col">Paper #2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td> 
+      <button class="btn fa btn-link"/>
+      <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+<button class="btn send btn-link"/>
+      
+      </td>
+      <td>Giacomo</td>
+      <td>Guilizzoni</td>
+      <td>21GD01</td>
+      <td>peldi@inbox.lv</td>
+      <td>A Collaborative Code Review Pl...</td>
+      <td>A comparative study of hybrid...</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td> 
+      <button class="btn fa btn-link"/>
+      <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+<button class="btn send btn-link"/>
+      
+      </td>
+      <td>Marco</td>
+      <td>Botton</td>
+      <td>22GD02</td>
+      <td>peldi@gmail</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>
+       <button class="btn fa btn-link"/>
+      <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+<button class="btn send btn-link"/>
+      </td>
+      <td>Mariah</td>
+      <td>Maclachlan</td>
+      <td>22GD03</td>
+      <td>oreon@mail.com</td>
+      <td>A comparison of scrum and Knab...</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>
+       <button class="btn fa btn-link"/>
+      <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+<button class="btn send btn-link"/>
+      </td>
+      <td>Liberty</td>
+      <td>Valerie</td>
+      <td>23GD04</td>
+      <td>itcode@hotmail.com</td>
+      <td>A comparative Study of UML To...</td>
+      <td>A Comparison of Metrics for...</td>
+    </tr>
+    <tr>
+      <th scope="row">5</th>
+      <td>
+          <button class="btn fa btn-link"/>
+      <button class="btn edit btn-link"/>
+<button class="btn cancel btn-link"/>
+<button class="btn send btn-link"/>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">6</th>
+     <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+   
+  </tbody>
+</table>
+
+</div>
+</html>
