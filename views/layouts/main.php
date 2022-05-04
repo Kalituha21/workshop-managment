@@ -52,9 +52,15 @@ $menuBarItems = [
     ],
     [
         'label' => 'Papers',
-        'url' => ['#'],
+        'url' => ['/examples/papers'],
         'allowed_guests' => false,
         'allowed_roles' => [User::ROLE_ADMIN, User::ROLE_INSTRUCTOR, User::ROLE_STUDENT],
+    ],
+    [
+        'label' => 'Studentu_Info',
+        'url' => ['/examples/sinfo'],
+        'allowed_guests' => false,
+        'allowed_roles' => [],
     ],
     [
         'label' => 'Profile',
@@ -114,7 +120,13 @@ foreach ($menuBarItems as $item) {
                 . Html::endForm()
                 . '</li>'
             ),
-            ...$items,
+
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Queries', 'url' => ['/query/index']],
+            ['label' => 'Instructors', 'url' => ['/admin/instructors']],
+            ['label' => 'Student', 'url' => ['/examples/student']],
         ],
     ]);
     NavBar::end();

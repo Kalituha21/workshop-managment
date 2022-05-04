@@ -1,0 +1,87 @@
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.t{
+    text-indent: 50px;
+}
+.btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.btn:hover {
+    background-color: RoyalBlue;
+}
+.add {
+    background-color: LimeGreen;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+.add:hover {
+    background-color: Green;
+}
+.del {
+    background-color: red;
+    border: none;
+    color: Black;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+.del:hover {
+    background-color: darkred;
+}
+
+button.btn.edit::before {
+    font-family: fontAwesome;
+    content: "\f044\00a0";
+}
+button.btn.cancel::before {
+    font-family: fontAwesome;
+    content: "\f00d\00a0";
+}
+button.btn.send::before {
+    font-family: fontAwesome;
+    content: "\f14d\00a0";
+}
+button.btn.fa::before {
+    font-family: fontAwesome;
+    content: "\2709\00a0";
+}
+button.btn.check::before {
+    font-family: fontAwesome;
+    content: "\f05d\00a0";
+}
+button.btn.Devide::before {
+    font-family: fontAwesome;
+    content: "\f15d\00a0";
+}
+button.btn.Hide::before {
+    font-family: fontAwesome;
+    content: "\01F441";
+}
+
+input[type=text], select {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
