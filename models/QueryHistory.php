@@ -20,6 +20,7 @@ class QueryHistory extends ActiveRecord
         'insert_admin_user',
         'modify_query_history_table',
         'alter_users_add_fullname_columns',
+        'create_system_meta_table',
 
         // TODO: add here name new query folder
     ];
