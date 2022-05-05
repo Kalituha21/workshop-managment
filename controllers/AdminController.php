@@ -87,7 +87,7 @@ class AdminController extends Controller
     public function actionDeleteInstructor()
     {
         $instructorId = Yii::$app->request->get('id');
-        $instructor = User::deleteAll(['id' => $instructorId]);
+        User::deleteAll(['id' => $instructorId]);
 
         return $this->actionInstructors();
     }
@@ -115,5 +115,10 @@ class AdminController extends Controller
             'modal_edit_instructor',
             ['model' => $instructor]
         );
+    }
+
+    public function actionAdminProfileTab()
+    {
+        return $this->render('admin_profile_tab');
     }
 }

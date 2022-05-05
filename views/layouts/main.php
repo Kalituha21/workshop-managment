@@ -15,24 +15,6 @@ AppAsset::register($this);
 
 $menuBarItems = [
     [
-        'label' => 'Home (ex)',
-        'url' => ['/site/index'],
-        'allowed_guests' => true,
-        'allowed_roles' => [],
-    ],
-    [
-        'label' => 'About (ex)',
-        'url' => ['/site/about'],
-        'allowed_guests' => true,
-        'allowed_roles' => [],
-    ],
-    [
-        'label' => 'Contact (ex)',
-        'url' => ['/site/contact'],
-        'allowed_guests' => true,
-        'allowed_roles' => [],
-    ],
-    [
         'label' => 'Queries',
         'url' => ['/query/index'],
         'allowed_guests' => true,
@@ -66,7 +48,25 @@ $menuBarItems = [
         'label' => 'Profile',
         'url' => ['#'],
         'allowed_guests' => false,
-        'allowed_roles' => [],
+        'allowed_roles' => [User::ROLE_INSTRUCTOR],
+    ],
+    [
+        'label' => 'ADMIN PROFILE TAB',
+        'url' => ['/admin/admin-profile-tab'],
+        'allowed_guests' => false,
+        'allowed_roles' => [User::ROLE_ADMIN],
+    ],
+    [
+        'label' => 'STUDENT PROFILE TAB',
+        'url' => ['/student/student-profile-tab'],
+        'allowed_guests' => false,
+        'allowed_roles' => [User::ROLE_STUDENT],
+    ],
+    [
+        'label' => 'STUDENT PORTAL',
+        'url' => ['/student/student-portal'],
+        'allowed_guests' => false,
+        'allowed_roles' => [User::ROLE_ADMIN, User::ROLE_INSTRUCTOR],
     ],
 ];
 
@@ -92,6 +92,7 @@ foreach ($menuBarItems as $item) {
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
